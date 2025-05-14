@@ -14,11 +14,11 @@ const selectItem = ref('Produkte')
 const selectedProduct = ref('')
 const quantity = ref(1)
 
-const chooseItem = {
-  Produkte: ['Proteinpulver', 'Kreatin', 'Isoclear']
+const chooseItem: Record<string, string[]> = {
+  Produkte: ['Proteinpulver','Kreatin','Isoclear']
 }
 
-const prices = {
+const prices: Record<string, number> = {
   Proteinpulver: 29.99,
   Kreatin: 19.99,
   Isoclear: 24.99
