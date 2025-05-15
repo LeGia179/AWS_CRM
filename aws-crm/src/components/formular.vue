@@ -11,11 +11,10 @@ const plz = ref('')
 
 // Produktlogik
 const selectItem = ref('Produkte')
-const selectedProduct = ref('')
-const quantity = ref(1)
+const products = ref([{ product: '', quantity: 1 }])
 
 const chooseItem: Record<string, string[]> = {
-  Produkte: ['Proteinpulver','Kreatin','Isoclear']
+  Produkte: ['Proteinpulver', 'Kreatin', 'Isoclear']
 }
 
 const prices: Record<string, number> = {
@@ -25,18 +24,28 @@ const prices: Record<string, number> = {
 }
 
 const totalPrice = computed(() => {
-  const price = prices[selectedProduct.value] || 0
-  return (price * quantity.value).toFixed(2)
+  return products.value.reduce((sum, item) => {
+    const price = prices[item.product] || 0
+    return sum + price * item.quantity
+  }, 0).toFixed(2)
 })
 
+const addProduct = () => {
+  products.value.push({ product: '', quantity: 1 })
+}
+
 const handlePurchase = () => {
-  alert(`Bestellung für ${quantity.value}x ${selectedProduct.value} wurde aufgegeben. Gesamtpreis: €${totalPrice.value}`)
+  const summary = products.value
+      .filter(p => p.product && p.quantity > 0)
+      .map(p => `${p.quantity}x ${p.product}`)
+      .join(', ')
+  alert(`Bestellung für: ${summary}. Gesamtpreis: €${totalPrice.value}`)
 }
 </script>
 
 <template>
   <div class="ui-container">
-    <!-- Linker Bereich: Benutzerdaten -->
+    <!-- Linker Bereich -->
     <div class="leftside">
       <h3>Kundendaten</h3>
       <label>Nachname</label>
@@ -58,26 +67,51 @@ const handlePurchase = () => {
       <input v-model="plz" type="text" placeholder="PLZ" required />
     </div>
 
-    <!-- Rechter Bereich: Produktauswahl -->
+    <!-- Rechte Seite: Produktauswahl -->
     <div class="rightside">
       <h3>Produktwahl</h3>
-      <label>Produktauswahl:</label>
-      <select v-model="selectedProduct">
-        <option disabled value="">Bitte Produkt wählen</option>
-        <option v-for="option in chooseItem[selectItem]" :key="option" :value="option">
-          {{ option }}
-        </option>
-      </select>
 
-      <label>Menge:</label>
-      <input type="number" v-model.number="quantity" min="1" />
+      <div
+          v-for="(item, index) in products"
+          :key="index"
+          class="product-line"
+      >
+        <div class="product-row">
+          <select v-model="item.product" class="product-select">
+            <option disabled value="">Bitte Produkt wählen</option>
+            <option
+                v-for="option in chooseItem[selectItem]"
+                :key="option"
+                :value="option"
+            >
+              {{ option }}
+            </option>
+          </select>
 
-      <div v-if="selectedProduct">
-        <p>Einzelpreis: €{{ prices[selectedProduct].toFixed(2) }}</p>
-        <p><strong>Gesamtpreis: €{{ totalPrice }}</strong></p>
+          <input
+              type="number"
+              v-model.number="item.quantity"
+              min="1"
+              class="product-quantity"
+          />
+
+          <span class="product-price" v-if="item.product">
+            €{{ (prices[item.product] * item.quantity).toFixed(2) }}
+          </span>
+        </div>
       </div>
 
-      <button @click="handlePurchase" :disabled="!selectedProduct || quantity < 1">Jetzt kaufen</button>
+      <button class="add-btn" @click="addProduct">+ Produkt hinzufügen</button>
+
+      <div class="total-section">
+        <p><strong>Gesamtpreis: €{{ totalPrice }}</strong></p>
+        <button
+            @click="handlePurchase"
+            :disabled="products.length === 0 || products.some(p => !p.product || p.quantity < 1)"
+        >
+          Jetzt kaufen
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -90,9 +124,11 @@ const handlePurchase = () => {
   padding: 20px;
   justify-content: center;
   align-items: flex-start;
-  overflow-x: auto; /* Falls Bildschirm zu klein wird */
+  background-color: #eef3f8;
+  overflow-x: auto;
 }
 
+/* Linke & rechte Box */
 .leftside,
 .rightside {
   width: 400px;
@@ -100,37 +136,86 @@ const handlePurchase = () => {
   flex-direction: column;
   gap: 10px;
   padding: 20px;
-  border: 2px solid #aaaaaa;
+  border: 2px solid #000;
   border-radius: 10px;
-  background-color: #aaaaaa;
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
-  min-height: 500px; /* Gleiche Höhe für beide Boxen */
+  background-color: #F4A460;
+  min-height: 500px;
+  color: #000000;
 }
 
-/* Neue Klasse für den rechten Box-Inhalt */
+/* Rechte Box scrollt */
 .rightside {
-  justify-content: space-between;
+  max-height: 500px;
+  overflow-y: auto;
+  justify-content: flex-start;
 }
 
-h3 {
+/* Eingabefelder */
+.leftside input,
+.rightside input {
+  background-color: #F0F8FF;
+  color: black;
+  width: 100%;
+}
+
+/* Produktlinie */
+.product-line {
+  border: 1px solid #aaa;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #f1f1f1;
   margin-bottom: 10px;
 }
 
-input,
-select {
+/* Produkt & Menge nebeneinander */
+.product-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Weißer Hintergrund + schwarze Schrift für Select */
+.product-select {
+  background-color: #F0F8FF;
+  color: #000000;
+  border: 1px solid #000000;
+  border-radius: 4px;
   padding: 8px;
+  width: 100%;
+  appearance: none; /* optional für einheitlichen Look */
+}
+
+/* Option-Farben */
+.product-select option {
+  background-color: #F0F8FF;
+  color: #000000;
+  border: 1px solid #000000;
+}
+
+
+.product-quantity {
+  width: 60px;
+  padding: 6px;
+  text-align: center;
   border: 1px solid #aaa;
   border-radius: 4px;
 }
 
+.product-price {
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+/* Buttons */
 button {
   margin-top: 10px;
   padding: 10px;
   font-size: 1rem;
-  background-color: springgreen;
+  background-color: #F0F8FF;
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  color: #000000;
 }
 
 button:disabled {
@@ -138,10 +223,15 @@ button:disabled {
   cursor: not-allowed;
 }
 
-/* Optional: Kein Umbruch auf kleinen Bildschirmen */
-@media (max-width: 768px) {
-  .ui-container {
-    flex-wrap: nowrap;
-  }
+.add-btn {
+  background-color: #F0F8FF;
+  color: black;
+}
+
+/* Gesamtsumme + Kaufen */
+.total-section {
+  margin-top: 20px;
+  padding-top: 10px;
+  border-top: 1px solid #ccc;
 }
 </style>
