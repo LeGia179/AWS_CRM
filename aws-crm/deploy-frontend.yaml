@@ -9,7 +9,11 @@ Resources:
       WebsiteConfiguration:
         IndexDocument: index.html
         ErrorDocument: index.html
-
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: false
+        BlockPublicPolicy: false
+        IgnorePublicAcls: false
+        RestrictPublicBuckets: false
 
   FrontendBucketPolicy:
     Type: AWS::S3::BucketPolicy
@@ -44,3 +48,8 @@ Resources:
         ViewerCertificate:
           CloudFrontDefaultCertificate: true
         HttpVersion: http2
+
+Outputs:
+  WebsiteURL:
+    Description: "CloudFront Distribution URL"
+    Value: !Sub 'https://${CloudFrontDistribution.DomainName}'
