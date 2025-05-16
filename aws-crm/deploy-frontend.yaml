@@ -26,29 +26,6 @@ Resources:
             Principal: '*'
             Action: 's3:GetObject'
             Resource: !Sub '${FrontendBucket.Arn}/*'
-
-  CloudFrontDistribution:
-    Type: AWS::CloudFront::Distribution
-    Properties:
-      DistributionConfig:
-        Origins:
-          - DomainName: !GetAtt FrontendBucket.RegionalDomainName
-            Id: S3Origin
-            S3OriginConfig: {}
-        Enabled: true
-        DefaultRootObject: index.html
-        DefaultCacheBehavior:
-          TargetOriginId: S3Origin
-          ViewerProtocolPolicy: redirect-to-https
-          AllowedMethods: [GET, HEAD]
-          ForwardedValues:
-            QueryString: false
-            Cookies:
-              Forward: none
-        ViewerCertificate:
-          CloudFrontDefaultCertificate: true
-        HttpVersion: http2
-
 Outputs:
   WebsiteURL:
     Description: "CloudFront Distribution URL"
