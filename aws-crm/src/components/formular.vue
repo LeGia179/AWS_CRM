@@ -47,7 +47,7 @@ const handlePurchase = () => {
   <div class="ui-container">
     <!-- Linker Bereich -->
     <div class="leftside">
-      <h3>Kundendaten das ist ein Test Header für die Pipeline</h3>
+      <h3>Kundendaten das Unfassbar</h3>
       <label>Nachname</label>
       <input v-model="nachName" type="text" placeholder="Nachname" required />
 
