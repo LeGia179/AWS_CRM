@@ -26,7 +26,3 @@ Resources:
             Principal: '*'
             Action: 's3:GetObject'
             Resource: !Sub '${FrontendBucket.Arn}/*'
-Outputs:
-  WebsiteURL:
-    Description: "CloudFront Distribution URL"
-    Value: !Sub 'https://${CloudFrontDistribution.DomainName}'
