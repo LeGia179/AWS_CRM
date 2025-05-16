@@ -11,6 +11,10 @@ phases:
     commands:
       - npm run build
 
+  post_build:
+    commands:
+      - aws s3 sync dist/ s3://crm-gia-le-stack-frontend-bucket --delete
+
 artifacts:
   files:
     - '**/*'
