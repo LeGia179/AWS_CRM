@@ -1,6 +1,6 @@
-<mxfile host="drawio-plugin" modified="2025-05-16T18:31:00.713Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" etag="IFdEK2voIoQPe5wwsj3c" version="22.1.22" type="embed">
+<mxfile host="drawio-plugin" modified="2025-05-16T19:50:25.324Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" etag="QcPwyOqlj-tpsinxQvB1" version="22.1.22" type="embed">
   <diagram name="Seite-1" id="vdwy2ADWtqlWa-Q7clY7">
-    <mxGraphModel dx="1964" dy="867" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="554" dy="245" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -10,7 +10,7 @@
         <mxCell id="JgduJuPoJpBLt58f9y2H-1" value="User" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" parent="1" vertex="1">
           <mxGeometry x="20" y="390" width="30" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="JgduJuPoJpBLt58f9y2H-2" value="" style="rounded=1;arcSize=10;dashed=0;fillColor=none;gradientColor=none;strokeWidth=2;" parent="1" vertex="1">
+        <mxCell id="JgduJuPoJpBLt58f9y2H-2" value="cd" style="rounded=1;arcSize=10;dashed=0;fillColor=none;gradientColor=none;strokeWidth=2;" parent="1" vertex="1">
           <mxGeometry x="250" y="260" width="1300" height="1260" as="geometry" />
         </mxCell>
         <mxCell id="JgduJuPoJpBLt58f9y2H-3" value="" style="dashed=0;html=1;shape=mxgraph.aws3.cloud;fillColor=#F58536;gradientColor=none;dashed=0;" parent="1" vertex="1">
@@ -163,6 +163,9 @@
         </mxCell>
         <mxCell id="77" value="Übersetzer app" style="whiteSpace=wrap;html=1;shape=mxgraph.basic.document" vertex="1" parent="1">
           <mxGeometry x="510" y="865" width="100" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="79" value="Weitere pipline&amp;nbsp;&lt;br&gt;-&amp;gt; &quot;create build&quot; erstellt&amp;nbsp;&lt;br&gt;-&amp;gt; pipeline erstellt&amp;nbsp;" style="whiteSpace=wrap;html=1;shape=mxgraph.basic.document" vertex="1" parent="1">
+          <mxGeometry x="970" y="1200" width="250" height="100" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
