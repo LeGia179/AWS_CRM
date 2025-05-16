@@ -9,7 +9,7 @@ Resources:
       WebsiteConfiguration:
         IndexDocument: index.html
         ErrorDocument: index.html
-      AccessControl: PublicRead
+
 
   FrontendBucketPolicy:
     Type: AWS::S3::BucketPolicy
