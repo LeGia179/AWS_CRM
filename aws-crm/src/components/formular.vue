@@ -40,7 +40,40 @@ const handlePurchase = () => {
       .map(p => `${p.quantity}x ${p.product}`)
       .join(', ')
   alert(`Bestellung für: ${summary}. Gesamtpreis: €${totalPrice.value}`)
+
+  sendToLambda()
 }
+
+const sendToLambda = async () => {
+  const payload = {
+    nachName: nachName.value,
+    vorName: vorName.value,
+    email: email.value,
+    strasse: straße.value,
+    hausnummer: hausnummer.value,
+    plz: plz.value,
+    produkt: products.value,
+    gesamtpreis: totalPrice.value,
+  }
+
+  try {
+    const response = await fetch('https://l7cvx7hf36.execute-api.eu-west-1.amazonaws.com/produktion', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(payload),
+    })
+
+    if (!response.ok) throw new Error('Fehler beim PDF-Generieren')
+
+    const blob = await response.blob()
+    const url = URL.createObjectURL(blob)
+    window.open(url, '_blank')
+  } catch (error) {
+    alert('Fehler beim Senden: ' + error)
+  }
+}
+
+
 </script>
 
 <template>
