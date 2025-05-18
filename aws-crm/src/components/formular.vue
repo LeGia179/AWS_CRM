@@ -57,7 +57,7 @@ const sendToLambda = async () => {
   }
 
   try {
-    const response = await fetch('https://l7cvx7hf36.execute-api.eu-west-1.amazonaws.com/produktion', {
+    const response = await fetch('https://l7cvx7hf36.execute-api.eu-west-1.amazonaws.com/produktion/generate-pdf', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(payload),
