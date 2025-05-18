@@ -31,11 +31,11 @@ Resources:
 
   #Archiv-Bucket für erstellte PDF
   ArchivBucket:
-    Type: AWS::S3:Bucket
+    Type: AWS::S3::Bucket
     Properties:
-      BucketName: crm-gia-le-archiv
+      BucketName: !Sub '${AWS::StackName}-archiv-bucket'
       PublicAccessBlockConfiguration:
-        BlockPublicAcls: false
-        BlockPublicPolicy: false
-        IgnorePublicAcls: false
-        RestrictPublicBuckets: fals
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
