@@ -2,6 +2,7 @@ AWSTemplateFormatVersion: '2010-09-09'
 Description: Bereitstellung einer statischen Vite-Frontend-App über S3 und CloudFront
 
 Resources:
+  #Frontend-Bucket
   FrontendBucket:
     Type: AWS::S3::Bucket
     Properties:
@@ -26,3 +27,15 @@ Resources:
             Principal: '*'
             Action: 's3:GetObject'
             Resource: !Sub '${FrontendBucket.Arn}/*'
+
+
+  #Archiv-Bucket für erstellte PDF
+  ArchivBucket:
+    Type: AWS::S3:Bucket
+    Properties:
+      BucketName: crm-gia-le-archiv
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: false
+        BlockPublicPolicy: false
+        IgnorePublicAcls: false
+        RestrictPublicBuckets: fals
