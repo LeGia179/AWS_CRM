@@ -1,6 +1,6 @@
-<mxfile host="drawio-plugin" modified="2025-05-19T16:06:23.329Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" etag="eLyOPvEo5X9pZU3Zpoa5" version="22.1.22" type="embed">
+<mxfile host="drawio-plugin" modified="2025-05-19T16:06:55.696Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" etag="j9j8p4Ij2_-fLV_WhyAP" version="22.1.22" type="embed">
   <diagram name="Seite-1" id="vdwy2ADWtqlWa-Q7clY7">
-    <mxGraphModel dx="546" dy="1661" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="975" dy="2153" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -8,7 +8,7 @@
           <mxGeometry x="220" y="160" width="1065" height="700" as="geometry" />
         </mxCell>
         <mxCell id="126" value="" style="rounded=1;arcSize=10;dashed=0;fillColor=none;gradientColor=none;strokeWidth=2;" parent="125" vertex="1">
-          <mxGeometry x="-7.5" y="-60" width="1080" height="760" as="geometry" />
+          <mxGeometry y="-68.75" width="1080" height="760" as="geometry" />
         </mxCell>
         <mxCell id="70" value="TS&lt;br&gt;css&lt;br&gt;html" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;" parent="125" vertex="1">
           <mxGeometry x="740" y="40" width="80" height="100" as="geometry" />
