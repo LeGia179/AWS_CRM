@@ -5,7 +5,7 @@ import { ref, computed } from 'vue'
 const nachName = ref('')
 const vorName = ref('')
 const email = ref('')
-const straße = ref('')
+const strasse = ref('')
 const hausnummer = ref('')
 const plz = ref('')
 
@@ -57,7 +57,7 @@ const sendToLambda = async () => {
     nachName: nachName.value,
     vorName: vorName.value,
     email: email.value,
-    straße: straße.value,
+    strasse: strasse.value,
     hausnummer: hausnummer.value,
     plz: plz.value,
     produkt: enrichedProducts, // <--- enthält jetzt price
@@ -102,7 +102,7 @@ const sendToLambda = async () => {
       <input v-model="email" type="email" placeholder="E-Mail" required />
 
       <label>Straße</label>
-      <input v-model="straße" type="text" placeholder="Straße" required />
+      <input v-model="strasse" type="text" placeholder="Straße" required />
 
       <label>Hausnummer</label>
       <input v-model="hausnummer" type="text" placeholder="Hausnummer" required />
