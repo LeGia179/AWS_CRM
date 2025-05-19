@@ -49,7 +49,7 @@ const sendToLambda = async () => {
       .filter(p => p.product && p.quantity > 0)
       .map(p => ({
         product: p.product,
-        quantity: p.quantity,
+        quantity: p.quantity,//Das ist ein test doku
         price: prices[p.product] || 0  // Preis aus Lookup
       }))
 
@@ -63,6 +63,7 @@ const sendToLambda = async () => {
     produkt: enrichedProducts, // <--- enthält jetzt price
     gesamtpreis: totalPrice.value,
   }
+
 
   try {
     const response = await fetch(
