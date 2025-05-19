@@ -101,8 +101,8 @@ const sendToLambda = async () => {
       <label>E-Mail</label>
       <input v-model="email" type="email" placeholder="E-Mail" required />
 
-      <label>Straße</label>
-      <input v-model="strasse" type="text" placeholder="Straße" required />
+      <label>Strasse</label>
+      <input v-model="strasse" type="text" placeholder="Strasse" required />
 
       <label>Hausnummer</label>
       <input v-model="hausnummer" type="text" placeholder="Hausnummer" required />
