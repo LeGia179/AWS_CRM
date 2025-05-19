@@ -45,23 +45,34 @@ const handlePurchase = () => {
 }
 
 const sendToLambda = async () => {
+  const enrichedProducts = products.value
+      .filter(p => p.product && p.quantity > 0)
+      .map(p => ({
+        product: p.product,
+        quantity: p.quantity,
+        price: prices[p.product] || 0  // Preis aus Lookup
+      }))
+
   const payload = {
     nachName: nachName.value,
     vorName: vorName.value,
     email: email.value,
-    strasse: straße.value,
+    straße: straße.value,
     hausnummer: hausnummer.value,
     plz: plz.value,
-    produkt: products.value,
+    produkt: enrichedProducts, // <--- enthält jetzt price
     gesamtpreis: totalPrice.value,
   }
 
   try {
-    const response = await fetch('https://l7cvx7hf36.execute-api.eu-west-1.amazonaws.com/produktion/generate-pdf', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(payload),
-    })
+    const response = await fetch(
+        'https://l7cvx7hf36.execute-api.eu-west-1.amazonaws.com/produktion/generate-pdf',
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        }
+    )
 
     if (!response.ok) throw new Error('Fehler beim PDF-Generieren')
 
